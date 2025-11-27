@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: jobportal-yt-main
+    env: node
+    buildCommand: npm run build
+    startCommand: npm run start
+    autoDeploy: true
