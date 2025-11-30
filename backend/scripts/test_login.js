@@ -1,5 +1,5 @@
 // Test login endpoint
-const BASE_URL = 'http://localhost:8000/api/v1';
+const BASE_URL = 'https://jobportal-7i6p.onrender.com/api/v1';
 
 async function testLogin() {
     console.log('Testing /user/login...');

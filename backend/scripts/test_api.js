@@ -1,6 +1,6 @@
 // Native fetch and FormData in Node 22
 
-const BASE_URL = 'http://localhost:8000/api/v1';
+const BASE_URL = 'https://jobportal-7i6p.onrender.com/api/v1';
 
 async function testRegister() {
     console.log('Testing /user/register...');
