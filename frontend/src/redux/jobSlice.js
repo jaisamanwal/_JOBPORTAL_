@@ -1,43 +1,60 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const jobSlice = createSlice({
-    name:"job",
-    initialState:{
-        allJobs:[],
-        allAdminJobs:[],
-        singleJob:null, 
-        searchJobByText:"",
-        allAppliedJobs:[],
-        searchedQuery:"",
+    name: "job",
+    initialState: {
+        allJobs: [],
+        allAdminJobs: [],
+        singleJob: null,
+        searchJobByText: "",
+        allAppliedJobs: [],
+        searchedQuery: "",
+        savedJobs: [],
     },
-    reducers:{
+    reducers: {
         // actions
-        setAllJobs:(state,action) => {
+        setAllJobs: (state, action) => {
             state.allJobs = action.payload;
         },
-        setSingleJob:(state,action) => {
+        setSingleJob: (state, action) => {
             state.singleJob = action.payload;
         },
-        setAllAdminJobs:(state,action) => {
+        setAllAdminJobs: (state, action) => {
             state.allAdminJobs = action.payload;
         },
-        setSearchJobByText:(state,action) => {
+        setSearchJobByText: (state, action) => {
             state.searchJobByText = action.payload;
         },
-        setAllAppliedJobs:(state,action) => {
+        setAllAppliedJobs: (state, action) => {
             state.allAppliedJobs = action.payload;
         },
-        setSearchedQuery:(state,action) => {
+        setSearchedQuery: (state, action) => {
             state.searchedQuery = action.payload;
+        },
+        toggleSavedJob: (state, action) => {
+            const job = action.payload;
+            // Ensure savedJobs array exists
+            if (!state.savedJobs) {
+                state.savedJobs = [];
+            }
+            const index = state.savedJobs.findIndex(savedJob => savedJob._id === job._id);
+            if (index === -1) {
+                // Job not saved, add it
+                state.savedJobs.push(job);
+            } else {
+                // Job already saved, remove it
+                state.savedJobs.splice(index, 1);
+            }
         }
     }
 });
 export const {
-    setAllJobs, 
-    setSingleJob, 
+    setAllJobs,
+    setSingleJob,
     setAllAdminJobs,
-    setSearchJobByText, 
+    setSearchJobByText,
     setAllAppliedJobs,
-    setSearchedQuery
+    setSearchedQuery,
+    toggleSavedJob
 } = jobSlice.actions;
 export default jobSlice.reducer;
